@@ -333,7 +333,7 @@ async function guestCloudReply(chat,sources){
    }
   };
   while(true){const {done,value}=await reader.read();if(done)break;consume(decoder.decode(value,{stream:true}));}
-  consume(buffer?'\n\n':'');
+  if(buffer)consume('\n\n');
   if(!answer.trim())throw Error('لم يرسل النموذج نصًا. حاول مرة ثانية.');
   session.guestBackend=true;updateUser();return answer.trim();
  }catch(e){
